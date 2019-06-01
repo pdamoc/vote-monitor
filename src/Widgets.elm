@@ -1,4 +1,14 @@
-module Widgets exposing (box, code4Logo, container, github, logo, row, selected, voteMonitorCircleIcon)
+module Widgets exposing
+    ( box
+    , code4Logo
+    , container
+    , github
+    , logo
+    , rightArrow
+    , row
+    , selected
+    , voteMonitorCircleIcon
+    )
 
 import Html exposing (Attribute, Html, div)
 import Html.Attributes exposing (attribute, class, property)
@@ -107,4 +117,14 @@ code4Logo =
                 [ SA.points "136.78 6.47 115.52 3.32 157.08 73.94 119.74 144.69 139.54 143.21 175.67 74 136.78 6.47" ]
                 []
             ]
+        ]
+
+
+rightArrow : Svg msg
+rightArrow =
+    Svg.svg
+        [ SA.viewBox "0 0 24 24" ]
+        [ Svg.path
+            [ SA.d "M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" ]
+            []
         ]

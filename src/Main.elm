@@ -186,7 +186,7 @@ viewMain model =
         content =
             case model.currentPage of
                 Home ->
-                    Home.view
+                    Home.view model.context
 
                 Incidents ->
                     Incidents.view
@@ -201,6 +201,6 @@ viewMain model =
                     AboutUs.view
 
                 Donate ->
-                    Home.view
+                    text ""
     in
     main_ [] [ content ]
