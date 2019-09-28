@@ -1,4 +1,4 @@
-module Widgets exposing
+module Ui exposing
     ( arrowRight
     , box
     , code4Logo

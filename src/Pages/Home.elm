@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import I18n
 import Route exposing (..)
-import Widgets exposing (..)
+import Ui exposing (..)
 
 
 view context =

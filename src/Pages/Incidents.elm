@@ -6,7 +6,7 @@ import Html exposing (..)
 import Html.Attributes exposing (class, src)
 import Html.Events exposing (..)
 import I18n
-import Widgets exposing (..)
+import Ui exposing (..)
 
 
 

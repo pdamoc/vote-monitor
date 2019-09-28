@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import I18n
 import Markdown exposing (defaultOptions)
-import Widgets exposing (..)
+import Ui exposing (..)
 
 
 view context =

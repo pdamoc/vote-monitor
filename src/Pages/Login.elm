@@ -4,7 +4,7 @@ import Data.Context exposing (Context)
 import Html exposing (Html, button, div, input, label, text)
 import Html.Attributes exposing (class, name, type_)
 import Html.Events exposing (onClick, onInput)
-import Widgets exposing (..)
+import Ui exposing (..)
 
 
 

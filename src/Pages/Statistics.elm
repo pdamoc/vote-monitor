@@ -4,7 +4,7 @@ import Data.Context exposing (Context)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import I18n
-import Widgets exposing (..)
+import Ui exposing (..)
 
 
 view context =

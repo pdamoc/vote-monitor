@@ -13,8 +13,8 @@ import Pages.Login as Login
 import Pages.Rules as Rules
 import Pages.Statistics as Statistics
 import Route exposing (Page(..))
+import Ui exposing (..)
 import Url
-import Widgets exposing (..)
 
 
 
@@ -171,7 +171,7 @@ viewHeader ({ context } as model) =
     header []
         [ container
             [ row
-                [ box "col-xs-12" [ box "brand" [ logo ], menu ] ]
+                [ box "col-xs-12" [ a [ class "brand", href "/" ] [ logo ], menu ] ]
             ]
         ]
 
@@ -205,7 +205,7 @@ viewFooter =
                 , box "col-xs-12 col-md-offset-1 col-md-6 copyright"
                     [ a [ href "https://code4.ro/", target "_blank" ] [ box "svg-icon-lg" [ code4Logo ] ]
                     , p []
-                        [ text "© 2018 Code for Romania."
+                        [ text "© 2019 Code for Romania."
                         , br [] []
                         , text "Organizație neguvernamentală independentă, neafiliată politic și apolitică."
                         ]
