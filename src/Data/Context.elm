@@ -1,13 +1,17 @@
 module Data.Context exposing (Context, init)
 
-import I18n exposing (I18n)
+import I18n exposing (Language)
 import I18n.Ro
 
 
 type alias Context =
-    { i18n : I18n }
+    { lang : Language
+    , jwt : String
+    }
 
 
 init : Context
 init =
-    { i18n = I18n.Ro.i18n }
+    { lang = I18n.Ro.lang
+    , jwt = ""
+    }

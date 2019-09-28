@@ -1,17 +1,21 @@
 module Widgets exposing
-    ( box
+    ( arrowRight
+    , box
     , code4Logo
     , container
+    , countryButton
     , github
     , logo
-    , rightArrow
     , row
     , selected
     , voteMonitorCircleIcon
+    , worldButton
     )
 
-import Html exposing (Attribute, Html, div)
-import Html.Attributes exposing (attribute, class, property)
+import Html exposing (Attribute, Html, button, div, img, text)
+import Html.Attributes exposing (attribute, class, property, src)
+import Html.Events exposing (onClick)
+import I18n exposing (Language)
 import Json.Decode as Json
 import Json.Encode as JEnc
 import Svg exposing (Svg)
@@ -120,11 +124,28 @@ code4Logo =
         ]
 
 
-rightArrow : Svg msg
-rightArrow =
+arrowRight : Svg msg
+arrowRight =
     Svg.svg
         [ SA.viewBox "0 0 24 24" ]
-        [ Svg.path
-            [ SA.d "M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" ]
-            []
+        [ Svg.path [ SA.d "M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" ] []
         ]
+
+
+mapButton msg mapImage btnLabel isSelected =
+    button [ class "map-button", onClick msg, selected isSelected ]
+        [ mapImage, text btnLabel ]
+
+
+worldButton lang msg isSelected =
+    mapButton msg
+        (img [ src <| lang "app.image.world" ] [])
+        (lang "app.image.world.label")
+        isSelected
+
+
+countryButton lang msg isSelected =
+    mapButton msg
+        (img [ src <| lang "app.image.country" ] [])
+        (lang "app.image.country.label")
+        isSelected

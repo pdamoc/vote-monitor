@@ -2,13 +2,14 @@ module Route exposing (Page(..), allPages, fromUrl, href, pageToString)
 
 import Html exposing (Attribute)
 import Html.Attributes as HA
-import I18n exposing (I18n)
+import I18n exposing (Language)
 import Url exposing (Url)
 import Url.Parser exposing (Parser, map, oneOf, parse, s, top)
 
 
 type Page
     = Home
+    | Login
     | Incidents
     | Statistics
     | Rules
@@ -20,63 +21,82 @@ allPages =
     [ Home, Incidents, Statistics, Rules, AboutUs, Donate ]
 
 
-routeParser : I18n -> Parser (Page -> a) a
-routeParser i18n =
+routeParser : Language -> Parser (Page -> a) a
+routeParser lang =
+    let
+        i18n =
+            I18n.i18nPrefix lang "route"
+    in
     oneOf
         [ map Home top
-        , map Incidents (s i18n.pages.incidents.path)
-        , map Statistics (s i18n.pages.statistics.path)
-        , map Rules (s i18n.pages.rules.path)
-        , map AboutUs (s i18n.pages.aboutUs.path)
+        , map Login (s "login")
+        , map Incidents (s <| i18n "incidents")
+        , map Statistics (s <| i18n "statistics")
+        , map Rules (s <| i18n "rules")
+        , map AboutUs (s <| i18n "aboutUs")
         ]
 
 
-fromUrl : I18n -> Url -> Page
-fromUrl i18n url =
-    parse (routeParser i18n) url
+fromUrl : Language -> Url -> Page
+fromUrl lang url =
+    parse (routeParser lang) url
         |> Maybe.withDefault Home
 
 
-href : I18n -> Page -> Attribute msg
-href i18n page =
+href : Language -> Page -> Attribute msg
+href trans page =
+    let
+        i18n =
+            I18n.i18nPrefix trans "route"
+    in
     HA.href <|
         case page of
             Home ->
                 "/"
 
+            Login ->
+                "/login"
+
             Incidents ->
-                i18n.pages.incidents.path
+                i18n "incidents"
 
             Statistics ->
-                i18n.pages.statistics.path
+                i18n "statistics"
 
             Rules ->
-                i18n.pages.rules.path
+                i18n "rules"
 
             AboutUs ->
-                i18n.pages.aboutUs.path
+                i18n "aboutUs"
 
             Donate ->
-                i18n.pages.donate.path
+                i18n "donate"
 
 
-pageToString : I18n -> Page -> String
-pageToString i18n page =
+pageToString : Language -> Page -> String
+pageToString lang page =
+    let
+        i18n =
+            I18n.i18nPrefix lang "nav"
+    in
     case page of
         Home ->
-            i18n.pages.home.text
+            i18n "home"
+
+        Login ->
+            "login"
 
         Incidents ->
-            i18n.pages.incidents.text
+            i18n "incidents"
 
         Statistics ->
-            i18n.pages.statistics.text
+            i18n "statistics"
 
         Rules ->
-            i18n.pages.rules.text
+            i18n "rules"
 
         AboutUs ->
-            i18n.pages.aboutUs.text
+            i18n "aboutUs"
 
         Donate ->
-            i18n.pages.donate.text
+            i18n "donate"

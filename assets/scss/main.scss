@@ -1,13 +1,17 @@
-$back-color:              #fff !default;     // Background color
-$back-color-second:         #fdda44;
-$link-color:              #5F288D;
-$link-color-second:              #22B968;
+@import "flex_utilities";
+
+$back-color: #fff !default;     // Background color
+$back-color-second: #fdda44;
+$link-color: #5F288D;
+$link-color-second: #22B968;
+$main-color: #5F288D;
 $spacer: 1rem; 
+$main-font-sans: 'Open Sans', sans-serif;
 
 body {
   background: $back-color;
   color: #2d2d2d;
-  font-family: 'Open Sans', sans-serif;
+  font-family: $main-font-sans;
   font-weight: 300;
   margin: 0;
   overflow-x: hidden;
@@ -274,36 +278,103 @@ span[type="button"] > div {
   margin-left: $spacer;
 }
 
-.btn-primary {
-  box-sizing: border-box;
-  text-transform: uppercase;
-  height: 60px;
-  
-  border-radius: 2px; 
-  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;  
-  background-color: $link-color;
+a.button {
+  border-radius: 2px;
+  background: $link-color;
   color: #fff;
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 1px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+
   text-decoration: none;
-  span {
-    line-height: 24px;
-    padding: 16px 8px 16px 16px ;
-  }
+  font-size: 16px;
+  display: inline-block;
+  line-height: 20px;
+  padding: 20px; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
   svg {
-    display: inline-block; 
-    color: rgb(45, 45, 45); 
-    fill: rgb(255, 255, 255); 
-    height: 24px; 
-    width: 24px; 
-    user-select: none; 
-    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms; 
-    vertical-align: middle; 
-    margin-left: 0px; 
-    margin-right: 12px;
+    fill: #fff;
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;  
+  }
+  &:hover{
+    opacity: 0.8;
+  }
+
+}
+
+.incidents-filter {
+  background-color: $back-color-second;
+  display: flex;
+  justify-content: space-around;
+  padding: $spacer; 
+  
+  button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $main-color;
+    font-weight: 700;
+    font-family: $main-font-sans;
+    font-size: 16px;
+    margin-left: $spacer;
+
+    &:not([selected]) {
+      opacity: 0.6;
+    }
+    &:hover {
+      opacity: 1;
+
+    }
+  } 
+  img {
+    height: 40px;
+  }
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem;
+  width: 30rem;
+  max-width:100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+
+  box-shadow: 0px 0px 18px 0px rgba(0,0,0,0.25);
+
+  label {
+    font-size: 2rem;
+    color: $main-color;
+  }
+  input {
+    // width: 100%;
+    border: 1px solid #ced4da;
+
+    font-size: 1rem; 
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+    margin-bottom: 1rem;
+  }
+  button {
+  border-radius: 2px;
+  background: $link-color;
+  color: #fff;
+
+  font-size: 16px; 
+  line-height: 20px;
+  padding: 20px; 
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  cursor: pointer;
   }
 }

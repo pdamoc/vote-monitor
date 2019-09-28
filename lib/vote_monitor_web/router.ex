@@ -5,7 +5,7 @@ defmodule VoteMonitorWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -15,6 +15,7 @@ defmodule VoteMonitorWeb.Router do
 
   scope "/", VoteMonitorWeb do
     pipe_through :browser
+    post "/login", ApiController, :login
 
     get "/", PageController, :index
     get "/*path", PageController, :index

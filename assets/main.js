@@ -4,5 +4,7 @@ import './scss/main.scss'
 
 const { Elm } = require('../src/Main.elm');
 
-var app = Elm.Main.init();
+var jwt = localStorage.getItem('vote-monitor-cred');
+
+var app = Elm.Main.init({flags: {jwt: (jwt ?  jwt  : "")}});
 
