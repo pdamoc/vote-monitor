@@ -6,12 +6,18 @@ import I18n.Ro
 
 type alias Context =
     { lang : Language
-    , jwt : String
+    , jwt : Maybe String
     }
 
 
-init : Context
-init =
+validateJwt : String -> Maybe String
+validateJwt jwt =
+    -- TODO: implement jwt validation
+    Just jwt
+
+
+init : String -> Context
+init jwt =
     { lang = I18n.Ro.lang
-    , jwt = ""
+    , jwt = validateJwt jwt
     }

@@ -9,16 +9,16 @@ import Url.Parser exposing (Parser, map, oneOf, parse, s, top)
 
 type Page
     = Home
-    | Login
     | Incidents
     | Statistics
     | Rules
     | AboutUs
+    | Admin
     | Donate
 
 
 allPages =
-    [ Home, Incidents, Statistics, Rules, AboutUs, Donate ]
+    [ Home, Incidents, Statistics, AboutUs, Donate ]
 
 
 routeParser : Language -> Parser (Page -> a) a
@@ -29,7 +29,7 @@ routeParser lang =
     in
     oneOf
         [ map Home top
-        , map Login (s "login")
+        , map Admin (s "admin")
         , map Incidents (s <| i18n "incidents")
         , map Statistics (s <| i18n "statistics")
         , map Rules (s <| i18n "rules")
@@ -54,8 +54,8 @@ href trans page =
             Home ->
                 "/"
 
-            Login ->
-                "/login"
+            Admin ->
+                "/admin"
 
             Incidents ->
                 i18n "incidents"
@@ -80,11 +80,11 @@ pageToString lang page =
             I18n.i18nPrefix lang "nav"
     in
     case page of
+        Admin ->
+            i18n "admin"
+
         Home ->
             i18n "home"
-
-        Login ->
-            "login"
 
         Incidents ->
             i18n "incidents"

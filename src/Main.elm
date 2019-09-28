@@ -7,9 +7,9 @@ import Html exposing (..)
 import Html.Attributes exposing (class, classList, href, id, target)
 import I18n
 import Pages.AboutUs as AboutUs
+import Pages.Admin as Admin
 import Pages.Home as Home
 import Pages.Incidents as Incidents
-import Pages.Login as Login
 import Pages.Rules as Rules
 import Pages.Statistics as Statistics
 import Route exposing (Page(..))
@@ -48,7 +48,7 @@ type alias Model =
 
     -- Page Models
     , incidents : Incidents.Model
-    , login : Login.Model
+    , admin : Admin.Model
     }
 
 
@@ -56,7 +56,7 @@ init : Flags -> Url.Url -> Nav.Key -> ( Model, Cmd Msg )
 init flags url key =
     let
         context =
-            Context.init
+            Context.init flags.jwt
     in
     ( { key = key
       , currentPage = Route.fromUrl context.lang url
@@ -64,7 +64,7 @@ init flags url key =
 
       -- Page Models
       , incidents = Incidents.init
-      , login = Login.init
+      , admin = Admin.init
       }
     , Cmd.none
     )
@@ -79,7 +79,7 @@ type Msg
     | UrlChanged Url.Url
       -- Page Msgs
     | IncidentsMsg Incidents.Msg
-    | LoginMsg Login.Msg
+    | AdminMsg Admin.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -104,13 +104,13 @@ update msg model =
             , Cmd.none
             )
 
-        LoginMsg iMsg ->
+        AdminMsg iMsg ->
             let
-                ( newlogin, cmd ) =
-                    Login.update iMsg model.login
+                ( newAdmin, cmd ) =
+                    Admin.update iMsg model.admin
             in
-            ( { model | login = newlogin }
-            , Cmd.map LoginMsg cmd
+            ( { model | admin = newAdmin }
+            , Cmd.map AdminMsg cmd
             )
 
 
@@ -183,7 +183,7 @@ viewFooter =
             [ row
                 [ box "col-xs-12 col-md-5"
                     [ box "bottom-icons mb-2"
-                        [ a [ href "/login" ] [ box "svg-icon-lg" [ voteMonitorCircleIcon ] ]
+                        [ a [ href "/admin" ] [ box "svg-icon-lg" [ voteMonitorCircleIcon ] ]
                         , a
                             [ class "m-2"
                             , href "https://github.com/code4romania/monitorizare-vot-votanti-client/"
@@ -226,8 +226,8 @@ viewMain ({ currentPage, context } as model) =
                 Home ->
                     Home.view context
 
-                Login ->
-                    viewPage Login.view model.login LoginMsg
+                Admin ->
+                    viewPage Admin.view model.admin AdminMsg
 
                 Incidents ->
                     viewPage Incidents.view model.incidents IncidentsMsg

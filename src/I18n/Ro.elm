@@ -25,6 +25,7 @@ lang =
     , ( "nav.rules", "Reguli Vot" )
     , ( "nav.aboutUs", "Despre Noi" )
     , ( "nav.donate", "Donează" )
+    , ( "nav.admin", "Admin" )
     , ( "pages.home.title", "Sesizează orice incident" )
     , ( "pages.home.first", "Dacă ai sesizat nereguli în timpul campaniei pentru referendum sau în ziua votului postează aici. Ai văzut mesaje care instigă la ură, ai văzut campanii derulate în mod ilegal sau alte comunicări care contravin principiilor democratice și care atacă drepturile fundamentale ale omului? Trimite o sesizare folosind formularul de mai jos. Mesajul tău va fi astfel public și va putea fi văzut de toți utilizatorii și preluat de autorități sau jurnaliști și investigată mai departe." )
     , ( "pages.home.first.button", "Vezi toate sesizările" )
